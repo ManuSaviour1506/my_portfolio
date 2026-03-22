@@ -1,5 +1,6 @@
+<p align="center">
 # ⚡ Manu Saviour – Developer Portfolio
-
+</p>
 <p align="center">
   <img src="https://img.shields.io/badge/Full%20Stack-Engineer-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Machine%20Learning-AI-green?style=for-the-badge" />
