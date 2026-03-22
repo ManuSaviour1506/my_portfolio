@@ -1,102 +1,107 @@
-# 🚀 Manu Saviour – Developer Portfolio
+# ⚡ Manu Saviour – Developer Portfolio
 
-A modern, production-grade portfolio showcasing expertise in **Full Stack Development, Machine Learning, and scalable system design**. Built with a strong focus on performance, real-world applications, and interactive user experience.
-
-🌐 **Live Portfolio:** https://your-portfolio-link.com
-
----
-
-## 📌 Overview
-
-This portfolio highlights my journey as a developer building **real-world applications and intelligent systems**. It demonstrates my ability to design, develop, and deploy scalable solutions across web and AI domains.
-
-The platform is designed not just as a showcase, but as an **interactive system representing engineering thinking and product-level execution**.
+<p align="center">
+  <img src="https://img.shields.io/badge/Full%20Stack-Engineer-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Machine%20Learning-AI-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/DevOps-Cloud-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Data%20Science-Analytics-purple?style=for-the-badge" />
+</p>
 
 ---
 
-## ✨ Key Features
+## 🚀 Overview
 
-* ⚡ Modern UI with smooth animations (Framer Motion + GSAP)
-* 🧠 Integration of AI/ML-based projects
-* 🏗️ Scalable full-stack architecture (MERN)
-* 📄 In-app resume preview with download functionality
-* 🌐 Fully responsive design (mobile-first)
-* 🚀 Deployed using modern cloud platforms
+A **production-grade portfolio** showcasing expertise in **Full Stack Development, Machine Learning, and scalable system design**. Built with a focus on real-world applications, system thinking, and performance.
+
+🌐 **Live:** https://my-portfolio-hv4j.vercel.app/
+
+---
+
+## 🎯 Recruiter Highlights (Placement Focus)
+
+* ✅ Built and deployed **multiple real-world applications** used by institutions
+* ✅ Strong foundation in **Data Structures, System Design, and Backend Engineering**
+* ✅ Experience with **end-to-end product development (frontend → backend → deployment)**
+* ✅ Developed **AI-based systems using Computer Vision and ML pipelines**
+* ✅ Hands-on with **cloud deployment (Vercel, Render)**
+* ✅ Experience in building **CMS platforms for non-technical users**
+* ✅ Focused on **scalability, performance, and clean architecture**
+
+---
+
+## 🏆 Top Projects
+
+### ⚽ AI Sports Assessment System
+
+* 🔗 Live: https://aisportsassessment.vercel.app/
+* 💻 GitHub: https://github.com/ManuSaviour1506/clientfinalsih.git
+* 🧠 AI-powered system using **Computer Vision (MediaPipe + OpenCV)**
+* 📊 Real-time performance scoring and leaderboard generation
+* ⚙️ Built using **React + Node.js + Python (FastAPI)**
+
+---
+
+### 🏫 New Generation School CMS
+
+* 🔗 Live: https://newgenerationeluru.com
+* 💻 GitHub: https://github.com/ManuSaviour1506/newgeneration.git
+* 🧩 Full-stack CMS platform for managing school content
+* 📢 Admin dashboard for news, gallery, and updates
+* 🌐 Custom domain deployment with scalable architecture
+
+---
+
+### 🏫 Anurag EM School Platform
+
+* 🔗 Live: https://anuragschool.com
+* 💻 GitHub: https://github.com/ManuSaviour1506/Anurag-em-school.git
+* 🧠 Dynamic web platform with CMS capabilities
+* 📊 Designed for real-world usage by school administrators
+* ⚡ Optimized for performance and usability
+
+---
+
+### 💊 Medease – Healthcare Reminder System
+
+* 🔗 Live: https://medease-psi.vercel.app/login
+* 💻 GitHub: https://github.com/ManuSaviour1506/cspmedicine.git
+* 🧠 Built after surveying **50+ households**
+* ⏰ Automated medicine reminders for elderly users
+* 📧 Notification-based system improving medication adherence
+
+---
+
+### 🌱 Mamatha School CMS (Social Impact)
+
+* 🔗 Live: https://mamathaschool.vercel.app/
+* 💻 GitHub: https://github.com/ManuSaviour1506/mamathaschool.git
+* 🤝 Developed as a **free service for rural education**
+* 🧩 CMS platform enabling non-technical admins
+* 🌍 Focused on **social impact and accessibility**
 
 ---
 
 ## 🧠 Tech Stack
 
-### 💻 Frontend
-
-* React.js
-* Tailwind CSS
-* Framer Motion
-* GSAP
-
-### 🔧 Backend
-
-* Node.js
-* Express.js
-
-### 🗄️ Database
-
-* MongoDB
-
-### 🤖 AI / ML
-
-* Python
-* Scikit-learn
-* OpenCV
-* MediaPipe
-
-### ☁️ Deployment & Tools
-
-* Vercel
-* Git & GitHub
-
----
-
----
-
-## 🎯 Portfolio Sections
-
-* Hero Section (Identity & Introduction)
-* Projects (Real-world applications)
-* Skills (Technical stack visualization)
-* Contact (Interactive communication UI)
-
----
-
-## 🌍 Real-World Projects
-
-* 🏫 School CMS platforms (admin-controlled content systems)
-* ⚽ AI-based sports performance analysis
-* 💊 Healthcare reminder system for elderly users
-* 🌱 Social impact platforms for education
-
----
-
-## ⚡ Performance
-
-* Optimized asset delivery
-* Smooth UI animations
-* Responsive across all devices
-
+**Frontend:** React.js, Tailwind CSS, Framer Motion, GSAP
+**Backend:** Node.js, Express.js
+**Database:** MongoDB
+**AI/ML:** Python, Scikit-learn, OpenCV, MediaPipe
+**DevOps:** Vercel, Render, GitHub, ImageKit CDN
 
 ---
 
 ## 📄 Resume
 
-* View Resume (in-app preview)
-* Download Resume
+* In-app resume preview
+* Download option available
 
 ---
 
 ## 🤝 Connect
 
 * GitHub: https://github.com/ManuSaviour1506
-
+* Portfolio: https://my-portfolio-hv4j.vercel.app/
 
 ---
 
@@ -105,4 +110,3 @@ The platform is designed not just as a showcase, but as an **interactive system 
 **Manu Saviour**
 Full Stack Developer • Machine Learning • DevOps • Data Science
 
-> “Building systems that solve real problems.”
