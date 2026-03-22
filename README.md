@@ -53,23 +53,9 @@ The platform is designed not just as a showcase, but as an **interactive system 
 ### ☁️ Deployment & Tools
 
 * Vercel
-* Render
 * Git & GitHub
-* ImageKit CDN
 
 ---
-
-## 🏗️ Architecture
-
-User
-↓
-React Frontend
-↓
-Node.js / Express API
-↓
-MongoDB Database
-↓
-Cloud Storage & CDN
 
 ---
 
@@ -96,18 +82,7 @@ Cloud Storage & CDN
 * Optimized asset delivery
 * Smooth UI animations
 * Responsive across all devices
-* CDN-based media handling
 
----
-
-## 📂 Installation
-
-```bash
-git clone https://github.com/ManuSaviour1506/your-portfolio-repo.git
-cd portfolio
-npm install
-npm run dev
-```
 
 ---
 
@@ -121,7 +96,7 @@ npm run dev
 ## 🤝 Connect
 
 * GitHub: https://github.com/ManuSaviour1506
-* Portfolio: https://your-portfolio-link.com
+
 
 ---
 
@@ -129,11 +104,5 @@ npm run dev
 
 **Manu Saviour**
 Full Stack Developer • Machine Learning • DevOps • Data Science
-
----
-
-## ⭐ Note
-
-This portfolio reflects my ability to build **scalable systems, real-world applications, and intelligent solutions** with a focus on performance and impact.
 
 > “Building systems that solve real problems.”
