@@ -1,7 +1,7 @@
-<p align="center">
+
 # ⚡ Manu Saviour – Developer Portfolio
-</p>
-<p align="center">
+
+<p align="left">
   <img src="https://img.shields.io/badge/Full%20Stack-Engineer-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Machine%20Learning-AI-green?style=for-the-badge" />
   <img src="https://img.shields.io/badge/DevOps-Cloud-orange?style=for-the-badge" />
@@ -109,5 +109,10 @@ A **production-grade portfolio** showcasing expertise in **Full Stack Developmen
 ## 👨‍💻 Author
 
 **Manu Saviour**
-Full Stack Developer • Machine Learning • DevOps • Data Science
+<p align="center">
+  <img src="https://img.shields.io/badge/Full%20Stack-Engineer-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Machine%20Learning-AI-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/DevOps-Cloud-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Data%20Science-Analytics-purple?style=for-the-badge" />
+</p>
 
