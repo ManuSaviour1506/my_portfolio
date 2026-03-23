@@ -110,10 +110,10 @@ const Contact = () => {
 
               {/* 🧠 INFO PANEL (Structured for Mobile) */}
               <div className="p-6 md:absolute md:bottom-8 md:left-8 md:right-8 md:p-0 bg-[#0B0B0C] md:bg-transparent">
-                <div className="flex flex-wrap gap-4 md:gap-6 mb-4 text-[10px] text-zinc-400 font-mono uppercase tracking-widest border-b border-white/5 pb-4">
+                <div className="flex flex-wrap gap-4 md:gap-6 mb-4 text-[14px] text-zinc-400 font-mono uppercase tracking-widest border-b border-white/5 pb-4">
                   <span><span className="text-white font-bold">10+</span> Projects</span>
                   <span><span className="text-white font-bold">5+</span> Deployments</span>
-                  <span><span className="text-white font-bold">02</span> Clients</span>
+                  <span><span className="text-white font-bold">03+</span> Clients</span>
                 </div>
 
                 <div className="min-h-[40px] mt-3 text-sm md:text-base text-emerald-400 font-mono flex items-center gap-2 drop-shadow-[0_0_6px_rgba(46,188,116,0.4)]">
