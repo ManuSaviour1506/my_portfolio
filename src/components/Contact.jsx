@@ -1,175 +1,173 @@
-import { motion } from "framer-motion";
-import { Copy, ArrowUpRight, Github, Linkedin, Instagram, Mail } from "lucide-react";
-import ProfileCard from './ProfileCard';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Copy, Github, Linkedin, Instagram, Globe } from "lucide-react";
 
-// 1. Import your photo from the src/assets folder
+// 1. Import your photo
 import manuPhoto from '../assets/new_01.png'; 
 
 const Contact = () => {
   const email = "manusaviour5@gmail.com";
+  
+  const texts = [
+    "Building scalable systems.",
+    "Designing AI-driven solutions.",
+    "Engineering real-world impact.",
+    "Creating production-grade applications."
+  ];
+
+  const [displayText, setDisplayText] = useState("");
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!deleting) {
+        setDisplayText(texts[index].substring(0, subIndex + 1));
+        setSubIndex(subIndex + 1);
+        if (subIndex + 1 === texts[index].length) {
+          setTimeout(() => setDeleting(true), 2000);
+        }
+      } else {
+        setDisplayText(texts[index].substring(0, subIndex - 1));
+        setSubIndex(subIndex - 1);
+        if (subIndex === 0) {
+          setDeleting(false);
+          setIndex((prev) => (prev + 1) % texts.length);
+        }
+      }
+    }, deleting ? 40 : 80);
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, deleting]);
 
   const copyEmail = () => {
     navigator.clipboard.writeText(email);
     alert("Email copied to clipboard!");
   };
 
-  const socials = [
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/manu-saviour-36a08429a/", icon: <Linkedin size={20} /> },
-    { name: "GitHub", url: "https://github.com/ManuSaviour1506", icon: <Github size={20} /> },
-    { name: "Instagram", url: "https://www.instagram.com/mannuu._.15/", icon: <Instagram size={20} /> },
-  ];
-
   return (
-    <section id="contact" className="py-32 px-6 border-t border-zinc-900 bg-[#050505]">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="py-20 md:py-32 px-4 md:px-6 border-t border-zinc-900 bg-[#050505] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
         
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-[8vw] md:text-[6vw] font-black tracking-tighter leading-none uppercase mb-20 text-center"
+          className="text-[12vw] md:text-[6vw] font-black tracking-tighter leading-none uppercase mb-12 md:mb-20 text-center"
         >
           Let's create <br />
           <span className="text-zinc-500 italic font-serif lowercase">something real.</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-start">
           
-          {/* Left Side: Profile Card */}
-<div className="flex justify-center lg:justify-end w-full">
+          {/* --- LEFT SIDE: THE CARD --- */}
+          <div className="flex justify-center w-full">
+            <div className="relative w-full max-w-lg group rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-zinc-800 bg-[#0B0B0C] shadow-2xl flex flex-col">
+              
+              {/* 🖼️ IMAGE CONTAINER */}
+              <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] overflow-hidden">
+                <img
+                  src={manuPhoto}
+                  alt="Manu Saviour"
+                  className="w-full h-full object-cover object-top transition duration-700 group-hover:scale-105 grayscale-[20%] group-hover:grayscale-0"
+                />
+                {/* Mobile Gradient (Heavier on bottom to support text) */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#0B0B0C]" />
+                
+                {/* 🖥️ SYSTEM HUD (Repositioned for Mobile) */}
+                <div className="absolute top-4 right-4 md:top-6 md:right-6 text-right space-y-2 md:space-y-3 pointer-events-none">
+                  <div className="space-y-0">
+                    <h3 className="text-lg md:text-4xl font-black text-white uppercase tracking-tighter leading-none">
+                      MANU <span className="text-zinc-500">SAVIOUR</span>
+                    </h3>
+                    <p className="text-[10px] md:text-[15px] font-mono text-emerald-400 uppercase tracking-[0.2em]">
+                      System_Architect.exe
+                    </p>
+                  </div>
 
-  <div className="relative w-full max-w-md group rounded-[2rem] overflow-hidden border border-zinc-800 bg-[#0B0B0C]">
+                  <div className="flex flex-col items-end font-mono text-[10px] md:text-[15px] text-zinc-400 uppercase tracking-widest space-y-1">
+                    <div className="flex items-center gap-1 md:gap-2">
+                      <span className="text-zinc-600">LOC:</span> 16.54° N <Globe size={10} />
+                    </div>
+                    <div className="flex items-center gap-1 md:gap-2">
+                      <span className="text-zinc-600">TME:</span> {time}
+                    </div>
+                    <div className="flex items-center gap-1 md:gap-2">
+                      <span className="text-emerald-500 animate-pulse">Available</span>
+                      <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_8px_#10b981]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-    {/* 🌈 Glow */}
-    <div className="absolute inset-0 blur-3xl opacity-20 group-hover:opacity-30 transition"
-         style={{ background: "rgba(113, 196, 255, 0.4)" }} />
+              {/* 🧠 INFO PANEL (Structured for Mobile) */}
+              <div className="p-6 md:absolute md:bottom-8 md:left-8 md:right-8 md:p-0 bg-[#0B0B0C] md:bg-transparent">
+                <div className="flex flex-wrap gap-4 md:gap-6 mb-4 text-[10px] text-zinc-400 font-mono uppercase tracking-widest border-b border-white/5 pb-4">
+                  <span><span className="text-white font-bold">10+</span> Projects</span>
+                  <span><span className="text-white font-bold">5+</span> Deployments</span>
+                  <span><span className="text-white font-bold">02</span> Clients</span>
+                </div>
 
-    {/* 🖼️ IMAGE */}
-    <div className="relative w-full h-[350px] md:h-[420px]">
-      <img
-        src={manuPhoto}
-        alt="Manu Saviour"
-        className="w-full h-full object-cover object-top transition duration-700 group-hover:scale-105"
-      />
+                <div className="min-h-[40px] mt-3 text-sm md:text-base text-emerald-400 font-mono flex items-center gap-2 drop-shadow-[0_0_6px_rgba(46,188,116,0.4)]">
+                  <span className="text-zinc-500 text-xs">AI //</span>
+                  <span className="tracking-tight">{displayText}</span>
+                  <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.8, repeat: Infinity }} className="w-[6px] h-[14px] bg-emerald-400" />
+                </div>
 
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/60" />
-    </div>
-
-    {/* 🧠 TOP RIGHT DETAILS */}
-    <div className="absolute top-5 right-5 text-right space-y-2">
-
-      {/* Name */}
-      <h2 className="text-lg md:text-2.5xl font-semibold text-white">
-        Manu Saviour
-      </h2>
-
-      {/* Role */}
-      <p className="text-xs md:text-1xl text-zinc-300">
-        Full Stack Engineer • AI Systems
-      </p>
-
-      {/* Status */}
-      <div className="flex justify-end items-center gap-2 text-[20px] text-emerald-400 font-mono">
-        <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
-        Available
-      </div>
-
-      {/* Skills */}
-      <div className="flex flex-wrap justify-end gap-2 mt-2">
-        {["MERN", "ML", "DevOps","JAVA"].map((skill) => (
-          <span
-            key={skill}
-            className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-white border border-white/10"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-          {/* Right Side: Socials */}
-<div className="flex flex-col gap-6 w-full max-w-sm font-mono">
-
-  {/* 📩 EMAIL TERMINAL BLOCK */}
-  <button
-    onClick={copyEmail}
-    className="group relative w-full border border-zinc-700 bg-black px-5 py-4 
-               flex items-center justify-between hover:border-emerald-400 
-               transition-all duration-200"
-  >
-    {/* scan line effect */}
-    <div className="absolute inset-0 opacity-10 pointer-events-none 
-                    bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,0.1),transparent)] 
-                    animate-pulse" />
-
-    <div className="flex items-center gap-3">
-      <span className="text-emerald-400">$</span>
-      <div className="flex flex-col text-left">
-        <span className="text-[10px] text-zinc-500 uppercase tracking-widest">
-          send mail
-        </span>
-        <span className="text-sm text-zinc-300 group-hover:text-white">
-          {email}
-        </span>
-      </div>
-    </div>
-
-    <span className="text-zinc-600 group-hover:text-emerald-400 text-xs">
-      COPY
-    </span>
-  </button>
-
-  {/* 🌐 SOCIAL TERMINAL LIST */}
-  <div className="flex flex-col border border-zinc-800 bg-black">
-
-    {socials.map((social, i) => (
-      <a
-        key={social.name}
-        href={social.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group flex items-center justify-between px-5 py-4 
-                   border-b border-zinc-800 last:border-none 
-                   hover:bg-zinc-900 transition-all duration-200"
-      >
-        <div className="flex items-center gap-3">
-
-          {/* terminal arrow */}
-          <span className="text-zinc-600 group-hover:text-emerald-400 text-xs">
-            &gt;
-          </span>
-
-          {/* icon */}
-          <div className="text-zinc-500 group-hover:text-white">
-            {social.icon}
+                <div className="flex flex-wrap gap-2 mt-4 md:hidden">
+                    {["MERN", "ML", "JAVA", "AI"].map((skill) => (
+                      <span key={skill} className="text-[9px] font-bold px-2 py-0.5 rounded-sm bg-white/5 border border-white/10 text-zinc-400">
+                        {skill}
+                      </span>
+                    ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* name */}
-          <span className="text-sm text-zinc-400 group-hover:text-white uppercase tracking-wide">
-            {social.name}
-          </span>
-        </div>
+          {/* --- RIGHT SIDE: CONTACT ACTIONS --- */}
+          <div className="space-y-8 md:space-y-12">
+            <div className="space-y-4">
+              <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest">Connect_Protocol</p>
+              <button 
+                onClick={copyEmail}
+                className="w-full group flex items-center justify-between p-5 md:p-6 rounded-2xl border border-zinc-800 bg-zinc-900/30 hover:bg-zinc-900/50 transition-all text-left"
+              >
+                <div className="overflow-hidden">
+                  <p className="text-zinc-500 text-[10px] font-mono uppercase mb-1">Send an Email</p>
+                  <p className="text-lg md:text-2xl font-bold text-white truncate">{email}</p>
+                </div>
+                <Copy size={20} className="text-zinc-600 group-hover:text-emerald-400 shrink-0 ml-4" />
+              </button>
+            </div>
 
-        {/* status */}
-        <span className="text-[10px] text-zinc-600 group-hover:text-emerald-400">
-          OPEN
-        </span>
-      </a>
-    ))}
-
-  </div>
-
-  {/* 🧠 STATUS BAR */}
-  <div className="flex items-center justify-between text-[10px] text-zinc-600 border-t border-zinc-800 pt-3">
-    <span>STATUS: ONLINE</span>
-    <span className="text-emerald-400">READY</span>
-  </div>
-
-</div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3 md:gap-4">
+              {[
+                { name: "LinkedIn", url: "https://www.linkedin.com/in/manu-saviour-36a08429a/", icon: <Linkedin size={18} /> },
+                { name: "GitHub", url: "https://github.com/ManuSaviour1506", icon: <Github size={18} /> },
+                { name: "Instagram", url: "https://www.instagram.com/mannuu._.15/", icon: <Instagram size={18} /> },
+              ].map((social) => (
+                <a 
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center md:justify-start gap-3 px-6 py-4 rounded-xl border border-zinc-800 bg-zinc-900/20 hover:border-zinc-500 text-zinc-400 hover:text-white transition-all"
+                >
+                  {social.icon}
+                  <span className="text-xs font-bold uppercase tracking-widest">{social.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
