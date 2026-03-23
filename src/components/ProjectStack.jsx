@@ -100,7 +100,7 @@ const projects = [
     title: "Medease",
     category: "HealthTech / Community",
     description: "Smart medication reminder platform built after surveying 50+ households. Enables caregivers to schedule alerts for elderly patients, improving medication adherence and reducing health risks.",
-    url: "https://medease-psi.vercel.app/login",
+    url: "https://medease-psi.vercel.app",
     github: "https://github.com/ManuSaviour1506/cspmedicine.git",
     logs: [
       "[USER] Caregiver logged in...",
