@@ -29,7 +29,7 @@ const categoryColors = {
   data: "hsl(280, 60%, 55%)",
 };
 
-// --- UPGRADED SUB-COMPONENT: SYSTEM RESUME OVERLAY ---
+// --- SUB-COMPONENT: SYSTEM RESUME OVERLAY ---
 const ResumeModal = ({ isOpen, onClose, url }) => {
   const cardRef = useRef(null);
   const [progress, setProgress] = useState(100);
@@ -38,7 +38,7 @@ const ResumeModal = ({ isOpen, onClose, url }) => {
     if (isOpen) {
       setProgress(100);
       const startTime = Date.now();
-      const duration = 5000;
+      const duration = 3000;
       const interval = setInterval(() => {
         const elapsed = Date.now() - startTime;
         const remaining = Math.max(0, 100 - (elapsed / duration) * 100);
@@ -79,12 +79,9 @@ const ResumeModal = ({ isOpen, onClose, url }) => {
             onMouseLeave={() => gsap.to(cardRef.current, { rotateX: 0, rotateY: 0 })}
           >
             <div ref={cardRef} className="w-full h-full bg-[#0D0D0E] border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col">
-              {/* COUNTDOWN PROGRESS BAR */}
               <div className="absolute top-0 left-0 w-full h-[2px] bg-white/5 overflow-hidden">
                 <motion.div className="h-full bg-emerald-500 shadow-[0_0_10px_#10b981]" style={{ width: `${progress}%` }} />
               </div>
-
-              {/* SYSTEM HEADER */}
               <div className="flex items-center justify-between px-8 py-5 border-b border-white/5 bg-zinc-950/40">
                 <div className="flex items-center gap-6">
                   <div className="flex gap-1.5">
@@ -103,11 +100,8 @@ const ResumeModal = ({ isOpen, onClose, url }) => {
                   <button onClick={onClose} className="p-2 bg-white/5 rounded-full text-white hover:bg-red-500/20 transition-all"><X size={16}/></button>
                 </div>
               </div>
-
-              {/* PREVIEW FRAME */}
               <div className="flex-grow bg-[#f4f4f4] relative group">
                 <iframe src={`${url}#toolbar=0&view=FitH`} className="w-full h-full border-none opacity-90 group-hover:opacity-100 transition-opacity" title="Resume" />
-                <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_4px]" />
               </div>
             </div>
           </motion.div>
@@ -121,14 +115,37 @@ const ResumeModal = ({ isOpen, onClose, url }) => {
 const Hero = () => {
   const [activeNode, setActiveNode] = useState("spring");
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const activeSkill = skills.find((s) => s.id === activeNode);
+
+  // --- AUTO-ROTATION ENGINE (5 Seconds) ---
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setActiveNode((current) => {
+        const currentIndex = skills.findIndex((s) => s.id === current);
+        const nextIndex = (currentIndex + 1) % skills.length;
+        return skills[nextIndex].id;
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // Pause rotation when user interacts
+  const handleNodeClick = (id) => {
+    setActiveNode(id);
+    setIsPaused(true);
+    // Resume auto-rotation after 10 seconds of inactivity
+    setTimeout(() => setIsPaused(false), 10000);
+  };
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#050505] overflow-hidden px-4 md:px-6 py-20 md:py-24">
       
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} url="/resume.pdf" />
 
-      {/* Ambient Background Glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/5 blur-[120px] rounded-full" />
         <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-emerald-500/5 blur-[120px] rounded-full" />
@@ -154,28 +171,26 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-[10px] md:text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            <span className="flex items-center gap-2"><span className="w-2 h-2 bg-emerald-400 rounded-full"></span>Available for roles</span>
+            <span className="flex items-center gap-2">
+              <span className={`w-2 h-2 rounded-full ${isPaused ? 'bg-yellow-500' : 'bg-emerald-400 animate-pulse'}`}></span>
+              {isPaused ? 'Manual Override' : 'System Syncing'}
+            </span>
             <span>|</span><span>India</span><span>|</span><span>Full Stack • AI</span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8">
             <a href="#work" className="px-6 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl bg-white text-black hover:bg-zinc-200 transition">View Work</a>
-            
-            <button
-              onClick={() => setIsResumeOpen(true)}
-              className="px-6 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 transition flex items-center gap-3"
-            >
+            <button onClick={() => setIsResumeOpen(true)} className="px-6 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 transition flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Open_Resume.sys
             </button>
-
-            <a href="/resume.pdf" download="Manu_Saviour_Resume.pdf" className="px-6 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl bg-emerald-500 text-black hover:bg-emerald-400 transition flex items-center gap-2">
+            <a href="/resume.pdf" download className="px-6 py-3.5 text-xs font-black uppercase tracking-widest rounded-xl bg-emerald-500 text-black hover:bg-emerald-400 transition flex items-center gap-2">
               <Download size={14} /> Download
             </a>
           </div>
         </motion.div>
 
-        {/* Neural Graph */}
+        {/* Neural Graph Section */}
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           <div className="w-full md:w-1/3 flex flex-col justify-center min-h-[180px] md:min-h-[250px] order-2 md:order-1">
             <AnimatePresence mode="wait">
@@ -189,6 +204,19 @@ const Hero = () => {
                     <span className="text-[10px] font-mono px-3 py-1 rounded-full text-white font-bold" style={{ background: categoryColors[activeSkill.category] }}>{activeSkill.metric}</span>
                   </div>
                   <p className="text-zinc-400 text-sm md:text-xl leading-relaxed max-w-sm">{activeSkill.description}</p>
+                  
+                  {/* AUTO-ROTATE PROGRESS BAR */}
+                  {!isPaused && (
+                    <div className="w-32 h-[2px] bg-zinc-900 mt-4 overflow-hidden">
+                       <motion.div 
+                        key={activeSkill.id}
+                        initial={{ width: 0 }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 5, ease: "linear" }}
+                        className="h-full bg-white/20"
+                       />
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -208,9 +236,12 @@ const Hero = () => {
                 const isActive = activeNode === skill.id;
                 const color = categoryColors[skill.category];
                 return (
-                  <g key={skill.id} className="cursor-pointer" onClick={() => setActiveNode(isActive ? null : skill.id)}>
+                  <g key={skill.id} className="cursor-pointer" onClick={() => handleNodeClick(skill.id)}>
                     <text x={skill.x} y={skill.y - 7} textAnchor="middle" fill={isActive ? color : "white"} fillOpacity={isActive ? 1 : 0.5} fontSize={isActive ? 4 : 2.8} fontWeight={isActive ? "900" : "500"} className="transition-all duration-300 pointer-events-none">{skill.label}</text>
                     <circle cx={skill.x} cy={skill.y} r={isActive ? 4.5 : 2.2} fill={isActive ? color : "transparent"} stroke={isActive ? color : "#3f3f46"} strokeWidth={isActive ? 0.8 : 0.3} strokeOpacity={isActive ? 1 : 0.7} className="transition-all duration-300" style={{ filter: isActive ? `drop-shadow(0 0 15px ${color})` : "none" }} />
+                    {isActive && !isPaused && (
+                       <circle cx={skill.x} cy={skill.y} r="6" fill="none" stroke={color} strokeWidth="0.2" className="animate-ping" />
+                    )}
                   </g>
                 );
               })}
