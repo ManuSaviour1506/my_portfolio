@@ -175,7 +175,7 @@ const Hero = () => {
               <span className={`w-2 h-2 rounded-full ${isPaused ? 'bg-yellow-500' : 'bg-emerald-400 animate-pulse'}`}></span>
               {isPaused ? 'Manual Override' : 'System Syncing'}
             </span>
-            <span>|</span><span>India</span><span>|</span><span>Full Stack • AI</span>
+            <span>|</span><span>• Java • Python </span><span>|</span><span>Full Stack • AI</span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8">
