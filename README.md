@@ -14,7 +14,7 @@
 
 A **production-grade portfolio** showcasing expertise in **Full Stack Development, Machine Learning, and scalable system design**. Built with a focus on real-world applications, system thinking, and performance.
 
-🌐 **Live:** https://my-portfolio-hv4j.vercel.app/
+🌐 **Live:** https://manusaviour.online
 
 ---
 
